@@ -5,10 +5,18 @@ import matplotlib.pyplot as plt
 # --- 1. DATOS Y MATRIZ DE DISTANCIAS ---
 
 datos = {
-    'punto': [0, 1, 2, 3, 4, 5, 6],
-    'tipo': ['deposito', 'cliente', 'cliente', 'cliente', 'cliente', 'cliente', 'cliente'],
-    'x': [0, 2, 6, 8, 3, 9, 5],
-    'y': [0, 7, 4, 9, 1, 2, 8]
+    'punto': list(range(20)), # Crea números del 0 al 19
+    'tipo': ['deposito'] + ['cliente'] * 19, 
+    'x': [
+        0,  # Depósito (0,0)
+        2, 6, 8, 3, 9, 5,   # Los originales
+        12, 15, 4, 11, 7, 18, 14, 1, 19, 10, 16, 5, 13 # Nuevos
+    ],
+    'y': [
+        0,  # Depósito (0,0)
+        7, 4, 9, 1, 2, 8,   # Los originales
+        12, 5, 15, 18, 14, 10, 3, 19, 8, 6, 17, 11, 16 # Nuevos
+    ]
 }
 data = pd.DataFrame(datos)
 coords = data[['x', 'y']].values
@@ -21,8 +29,8 @@ clientes_ids = data[data['tipo'] != 'deposito']['punto'].values
 n_clientes = len(clientes_ids)
 
 # Configuración
-POBLACION = 50
-GENERACIONES = 20
+POBLACION = 100
+GENERACIONES = 10
 TASA_MUTACION = 0.2
 
 # --- 2. FUNCIONES DE VISUALIZACIÓN (NUEVO) ---
